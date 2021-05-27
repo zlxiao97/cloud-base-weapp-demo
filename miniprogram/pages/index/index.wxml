@@ -2,7 +2,9 @@
 <view class="container">
 
   <view>
-    <button>测试云函数</button>
+    <button bindtap="handleTest">上传PDF</button>
   </view>
-
+  <view>
+    <button bindtap="handlePreview">预览PDF</button>
+  </view>
 </view>
