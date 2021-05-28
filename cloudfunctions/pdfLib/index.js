@@ -13,7 +13,7 @@ async function createPdf() {
   const page = pdfDoc.addPage()
   const { width, height } = page.getSize()
   const fontSize = 30
-  page.drawText('Creating PDFs in JavaScript is awesome!', {
+  page.drawText('这是一段中文文本!', {
     x: 50,
     y: height - 4 * fontSize,
     size: fontSize,

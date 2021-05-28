@@ -15,7 +15,7 @@ Page({
   handleTest: function () {
     const that = this
     wx.cloud.callFunction({
-      name: 'pdfLib',
+      name: 'pdfkit',
       data: {},
       success(res) {
         that.setData({
