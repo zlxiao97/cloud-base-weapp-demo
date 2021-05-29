@@ -1,13 +1,19 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
 const PDFDocument = require('pdfkit');
-const fs = require('fs');
+
+const A4_WIDTH = 595.28;
+const A4_HEIGHT = 841.89;
 
 cloud.init()
 
 const getPDFBuffer = async () => {
   return new Promise((resolve) => {
-    const doc = new PDFDocument();
+    const doc = new PDFDocument({
+      margin: 0,
+      font: 'fonts/puhui/Alibaba-PuHuiTi-Medium.ttf',
+      size: 'A4'
+    });
     const buf = []
 
     doc.on('data', (chunk) => {
@@ -18,16 +24,17 @@ const getPDFBuffer = async () => {
       const buffer = Buffer.concat(buf)
       resolve(buffer)
     })
-    // doc
-    //   .font('fonts/puhui/Alibaba-PuHuiTi-Medium.ttf')
-    //   .fontSize(25)
-    //   .text('我爱你中国!', 100, 100);
-    doc.image('img/demo.png', 0, 0, {
-      width: 1200,
-      height: 2000,
+    doc.image('img/demo_empty.jpg', {
+      width: A4_WIDTH,
+      height: A4_HEIGHT,
       align: 'center',
       valign: 'center'
     })
+    doc
+      .fillColor([192, 80, 77])
+      .fontSize(10)
+      .text('熊巍', 0.32 * A4_WIDTH, 0.158 * A4_HEIGHT);
+
     doc.end();
   })
 }
