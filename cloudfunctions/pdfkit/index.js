@@ -18,11 +18,16 @@ const getPDFBuffer = async () => {
       const buffer = Buffer.concat(buf)
       resolve(buffer)
     })
-    doc
-      .font('fonts/puhui/Alibaba-PuHuiTi-Medium.ttf')
-      .fontSize(25)
-      .text('我爱你中国!', 100, 100);
-
+    // doc
+    //   .font('fonts/puhui/Alibaba-PuHuiTi-Medium.ttf')
+    //   .fontSize(25)
+    //   .text('我爱你中国!', 100, 100);
+    doc.image('img/demo.png', 0, 0, {
+      width: 1200,
+      height: 2000,
+      align: 'center',
+      valign: 'center'
+    })
     doc.end();
   })
 }
