@@ -24,17 +24,46 @@ Page({
       }
     })
   },
+  renamePDFAndOpen: function (savedFilePath) {
+    wx.openDocument({
+      filePath: savedFilePath,
+      fileType: 'pdf'
+    })
+    // const FileSystemManager = wx.getFileSystemManager()
+    // FileSystemManager.rename({
+    //   oldPath: savedFilePath,
+    //   newPath: wx.env.USER_DATA_PATH + '/这是一个自定义文件名.pdf',
+    //   success() {
+    //     wx.openDocument({
+    //       filePath: wx.env.USER_DATA_PATH + '/这是一个自定义文件名.pdf',
+    //       fileType: 'pdf'
+    //     })
+    //     wx.getSavedFileList({
+    //       success (res) {
+    //         console.log(res.fileList)
+    //       }
+    //     })
+    //   },
+    //   fail(err) {
+    //     console.error(err)
+    //   }
+    // })
+  },
   handlePreview: function () {
-    if (this.data.fileID) {
+    const that = this;
+    if (that.data.fileID) {
       wx.cloud.downloadFile({
-        fileID: this.data.fileID,
+        fileID: that.data.fileID,
       }).then(res => {
         const filePath = res.tempFilePath
-        console.log(filePath)
-        wx.openDocument({
-          filePath,
-          fileType: 'pdf'
+        wx.saveFile({
+          tempFilePath: filePath,
+          success(res) {
+            const savedFilePath = res.savedFilePath
+            that.renamePDFAndOpen(savedFilePath)
+          }
         })
+
       }).catch(error => {
         console.error(error)
       })
