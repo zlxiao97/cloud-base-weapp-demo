@@ -1,0 +1,143 @@
+{
+  "width": 84.8,
+  "pages": [
+    {
+      "startX": 7.5,
+      "startY": 76.7,
+      "rows": [
+        {
+          "height": 3.6,
+          "fields": [
+            { "startX": 13.8, "dataIndex": "name", "column": 8.1 },
+            { "startX": 56, "dataIndex": "customerType", "column": 8.1 }
+          ]
+        },
+        {
+          "height": 3.4,
+          "fields": [
+            { "startX": 13.8, "dataIndex": "certificateType", "column": 8.1 },
+            { "startX": 56, "dataIndex": "ceritificateNo", "column": 8.1 }
+          ]
+        },
+        {
+          "height": 3.57,
+          "fields": [
+            { "startX": 13.8, "dataIndex": "address", "column": 20.1 }
+          ]
+        },
+        {
+          "height": 3.57,
+          "fields": [
+            { "startX": 13.8, "dataIndex": "email", "column": 8.1 },
+            { "startX": 56, "dataIndex": "phone", "column": 8.1 }
+          ]
+        }
+      ]
+    },
+    {
+      "startX": 7.5,
+      "startY": 14.7,
+      "rows": [
+        {
+          "height": 3.57,
+          "fields": [
+            { "startX": 13.8, "dataIndex": "numberPlate", "column": 8.1 },
+            { "startX": 56, "dataIndex": "initDate", "column": 8.1 }
+          ]
+        },
+        {
+          "height": 3.57,
+          "fields": [
+            { "startX": 13.8, "dataIndex": "brand", "column": 8.1 },
+            { "startX": 56, "dataIndex": "traveledKM", "column": 8.1 }
+          ]
+        },
+        {
+          "height": 3.57,
+          "fields": [
+            { "startX": 13.8, "dataIndex": "frameNo", "column": 8.1 },
+            { "startX": 56, "dataIndex": "engineNo", "column": 8.1 }
+          ]
+        },
+        {
+          "height": 3.57,
+          "fields": [
+            { "startX": 13.8, "dataIndex": "warrantyPeriod", "column": 8.1 },
+            { "startX": 56, "dataIndex": "seatNumber", "column": 8.1 }
+          ]
+        },
+        {
+          "height": 3.57,
+          "fields": [
+            { "startX": 13.8, "dataIndex": "natureOfUse", "column": 8.1 },
+            { "startX": 56, "dataIndex": "isFuelCar", "column": 8.1 }
+          ]
+        },
+        {
+          "height": 3.57,
+          "fields": [
+            { "startX": 13.8, "dataIndex": "isChineseStandard", "column": 8.1 },
+            { "startX": 56, "dataIndex": "isNewCar", "column": 8.1 }
+          ]
+        },
+        {
+          "height": 3.57,
+          "fields": [
+            { "startX": 13.8, "dataIndex": "saleSource", "column": 8.1 },
+            { "startX": 56, "dataIndex": "drivingArea", "column": 8.1 }
+          ]
+        },
+        {
+          "height": 3.57,
+          "fields": [
+            { "startX": 13.8, "dataIndex": "carSeries", "column": 8.1 },
+            { "startX": 56, "dataIndex": "isImport", "column": 8.1 }
+          ]
+        },
+        {
+          "height": 3.57,
+          "fields": [
+            { "startX": 13.8, "dataIndex": "CIPolicyNumber", "column": 8.1 },
+            { "startX": 56, "dataIndex": "CIStartTime", "column": 8.1 }
+          ]
+        },
+        {
+          "height": 3.57,
+          "fields": [
+            { "startX": 13.8, "dataIndex": "CIPremium", "column": 8.1 },
+            { "startX": 56, "dataIndex": "travelTax", "column": 8.1 }
+          ]
+        },
+        {
+          "height": 3.57,
+          "fields": [
+            { "startX": 13.8, "dataIndex": "BIPolicyNumber", "column": 8.1 },
+            { "startX": 56, "dataIndex": "BIStartTime", "column": 8.1 }
+          ]
+        },
+        {
+          "height": 3.57,
+          "fields": [
+            { "startX": 13.8, "dataIndex": "BIPremium", "column": 8.1 },
+            { "startX": 56, "dataIndex": "BIVehiclePrice", "column": 8.1 }
+          ]
+        }
+      ]
+    },
+    {
+      "startX": 0,
+      "startY": 0,
+      "rows": []
+    },
+    {
+      "startX": 0,
+      "startY": 0,
+      "rows": []
+    },
+    {
+      "startX": 0,
+      "startY": 0,
+      "rows": []
+    }
+  ]
+}
