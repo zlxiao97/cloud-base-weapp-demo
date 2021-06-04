@@ -21,51 +21,50 @@ Page({
         that.setData({
           fileID: res.result.fileID
         })
+      },
+      error(err) {
+        console.error(err)
       }
     })
   },
-  renamePDFAndOpen: function (savedFilePath) {
-    wx.openDocument({
-      filePath: savedFilePath,
-      fileType: 'pdf'
+  renamePDFAndOpen: function (name, tempFileURL) {
+    // 利用 downloadFile API 可以通过 filePath 同时重命名文件，文件路径需要加环境变量 wx.env.USER_DATA_PATH
+    wx.downloadFile({
+      url: tempFileURL,
+      filePath: wx.env.USER_DATA_PATH + '/' + name,
+      success(res) {
+        if (res.statusCode === 200) {
+          wx.openDocument({
+            filePath: res.filePath,
+            fileType: 'pdf',
+            showMenu: true, // 允许发送文件到其他聊天
+          })
+        }
+      }
     })
-    // const FileSystemManager = wx.getFileSystemManager()
-    // FileSystemManager.rename({
-    //   oldPath: savedFilePath,
-    //   newPath: wx.env.USER_DATA_PATH + '/这是一个自定义文件名.pdf',
-    //   success() {
-    //     wx.openDocument({
-    //       filePath: wx.env.USER_DATA_PATH + '/这是一个自定义文件名.pdf',
-    //       fileType: 'pdf'
-    //     })
-    //     wx.getSavedFileList({
-    //       success (res) {
-    //         console.log(res.fileList)
-    //       }
-    //     })
-    //   },
-    //   fail(err) {
-    //     console.error(err)
-    //   }
-    // })
+
   },
   handlePreview: function () {
     const that = this;
     if (that.data.fileID) {
-      wx.cloud.downloadFile({
-        fileID: that.data.fileID,
-      }).then(res => {
-        const filePath = res.tempFilePath
-        wx.saveFile({
-          tempFilePath: filePath,
-          success(res) {
-            const savedFilePath = res.savedFilePath
-            that.renamePDFAndOpen(savedFilePath)
+      // 用上传后获得的 fileID 换取临时链接
+      wx.cloud.callFunction({
+        name: 'getFile',
+        data: {
+          fileID: that.data.fileID
+        },
+        success(res) {
+          const {
+            tempFileURL
+          } = res.result[0] || {}
+          if (tempFileURL) {
+            // 默认不能直接打开临时链接文件，下载后才可以打开
+            that.renamePDFAndOpen('这是一个自定义名字.pdf', tempFileURL)
           }
-        })
-
-      }).catch(error => {
-        console.error(error)
+        },
+        error(err) {
+          console.error(err)
+        }
       })
     } else {
       wx.showToast({
