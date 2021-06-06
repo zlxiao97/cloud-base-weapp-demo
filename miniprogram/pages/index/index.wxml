@@ -2,9 +2,6 @@
 <view class="container">
 
   <view>
-    <button bindtap="handleTest">上传PDF</button>
-  </view>
-  <view>
-    <button bindtap="handlePreview">预览PDF</button>
+    <button bindtap="handleTest">生成PDF</button>
   </view>
 </view>

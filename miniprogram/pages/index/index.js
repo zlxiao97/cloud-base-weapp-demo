@@ -14,16 +14,24 @@ Page({
 
   handleTest: function () {
     const that = this
+    wx.showLoading({
+      title: '正在生成文件...',
+    })
     wx.cloud.callFunction({
       name: 'pdfkit',
       data: {},
       success(res) {
         that.setData({
           fileID: res.result.fileID
+        }, () => {
+          that.handlePreview()
         })
       },
       error(err) {
         console.error(err)
+      },
+      complete() {
+        wx.hideLoading()
       }
     })
   },
@@ -34,12 +42,20 @@ Page({
       filePath: wx.env.USER_DATA_PATH + '/' + name,
       success(res) {
         if (res.statusCode === 200) {
+          wx.showLoading({
+            title: '正在打开文件...',
+          })
           wx.openDocument({
             filePath: res.filePath,
             fileType: 'pdf',
             showMenu: true, // 允许发送文件到其他聊天
+          }).then(() => {
+            wx.hideLoading()
           })
         }
+      },
+      complete() {
+        wx.hideLoading()
       }
     })
 
@@ -47,6 +63,9 @@ Page({
   handlePreview: function () {
     const that = this;
     if (that.data.fileID) {
+      wx.showLoading({
+        title: '正在下载文件...',
+      })
       // 用上传后获得的 fileID 换取临时链接
       wx.cloud.callFunction({
         name: 'getFile',
@@ -59,12 +78,13 @@ Page({
           } = res.result[0] || {}
           if (tempFileURL) {
             // 默认不能直接打开临时链接文件，下载后才可以打开
-            that.renamePDFAndOpen('这是一个自定义名字.pdf', tempFileURL)
+            that.renamePDFAndOpen('机动车延长保修服务合同.pdf', tempFileURL)
           }
         },
         error(err) {
           console.error(err)
-        }
+          wx.hideLoading()
+        },
       })
     } else {
       wx.showToast({
