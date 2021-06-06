@@ -56,7 +56,7 @@ const getCenteredPostion = (doc, { offsetX = 0, offsetY = 0, column = DOC_MAX_CO
     needWrap = true
   }
   return {
-    positionX: containerX + 0.2,
+    positionX: containerX + 0.6,
     positionY: containerY + containerHeight / 2 - textHeight / 2,
     needWrap,
     containerWidth,
